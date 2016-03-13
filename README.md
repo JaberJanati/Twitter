@@ -21,7 +21,7 @@ The following **optional** features are implemented
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/JaberJanati/Twitter/twitterApp.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='twitterApp.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
