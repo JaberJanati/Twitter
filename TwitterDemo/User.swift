@@ -14,6 +14,8 @@ class User: NSObject {
     var screenName: NSString?
     var profileUrl: NSURL?
     var tagLine: NSString?
+    var timeStamp: NSDate?
+    var descrpt: NSString?
     
     var dictionary: NSDictionary?
     
@@ -21,12 +23,14 @@ class User: NSObject {
         self.dictionary = dictionary
         name = dictionary["name"] as? String
         screenName = dictionary["screen_name"] as? String
+    
         tagLine = dictionary["description"] as? String
         let profileUrlString = dictionary["profile_image_url_https"] as? String
         
         if let profileUrlString = profileUrlString {
             profileUrl = NSURL(string: profileUrlString)
         }
+        
     }
     static var _currentUser: User?
     class var currentUser: User? {
