@@ -10,14 +10,19 @@ import UIKit
 
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var logoutButton: UIBarButtonItem!
-    var userData: [User]!
-    var tweets: [Tweet]!
     
+    @IBOutlet weak var tweetsLabel: UILabel!
+    @IBOutlet weak var followingLabel: UILabel!
+    @IBOutlet weak var followersLabel: UILabel!
+    
+    var tweets: [Tweet]!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -31,6 +36,14 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             }}, failure: {(error: NSError) -> () in
                 print(error.localizedDescription)
             })
+        let currentUser = User.currentUser
+        
+        print("\n\n\nHello\n\n")
+        
+        profileImage.setImageWithURL(currentUser!.profileUrl!)
+        followingLabel.text = String(currentUser!.followingCount!)
+        followersLabel.text = String(currentUser!.followersCount!)
+       tweetsLabel.text = String(currentUser!.listedCount!)
         
         // Do any additional setup after loading the view.
     }
@@ -63,14 +76,20 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPathForCell(cell)
+        let userData = tweets[indexPath!.row]
+        
+        let detailViewController = segue.destinationViewController as! TweetsDetailViewController
+        detailViewController.userData = userData
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

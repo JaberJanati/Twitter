@@ -16,13 +16,18 @@ class User: NSObject {
     var tagLine: NSString?
     var timeStamp: NSDate?
     var descrpt: NSString?
-    
+    var followersCount: Int?
+    var followingCount: Int?
+    var listedCount: Int?
     var dictionary: NSDictionary?
     
     init(dictionary: NSDictionary ) {
         self.dictionary = dictionary
         name = dictionary["name"] as? String
         screenName = dictionary["screen_name"] as? String
+        followersCount = dictionary["followers_count"] as? Int
+        followingCount = dictionary["following"] as? Int
+        listedCount = dictionary["listed_count"] as? Int
     
         tagLine = dictionary["description"] as? String
         let profileUrlString = dictionary["profile_image_url_https"] as? String
